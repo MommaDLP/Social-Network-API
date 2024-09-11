@@ -1,11 +1,10 @@
-const { Schema, Types } = require('mongoose');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+
 
 const reactionSchema = new Schema(
     {
-        reactionId: {
-            type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId(),
-        },
         reactionBody: {
             type: String,
             required: true,
@@ -19,5 +18,15 @@ const reactionSchema = new Schema(
             type: Date,
             default: Date.now,
         }
-    }
+
+    },
+{ 
+    
+        toJSON: { getters: true },
+        toObject: { getters: true }
+   
+}
 )
+const Reaction = mongoose.model('Reaction', reactionSchema);
+
+module.exports = Reaction;
