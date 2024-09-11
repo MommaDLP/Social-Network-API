@@ -1,5 +1,6 @@
 const { Thought, User } = require('../models');
 
+//all thoughts
 module.exports ={
     async getThoughts(req, res) {
         try{
@@ -10,6 +11,7 @@ module.exports ={
             res.status(500).json(err)
         }
     },
+    // thought by id
     async getSingleThought(req, res) {
         console.log("Single Thought Route: ", req.params)
         try {
@@ -24,6 +26,7 @@ module.exports ={
             res.status(500).json(err)
         }
     },
+    //create new thoughts
     async createThoughts(req, res) {
         try {
             const thought = await Thought.create(req.body);
@@ -34,6 +37,7 @@ module.exports ={
             res.status(500).json(err)
         }
     },
+    //delete thoughts
     async deleteThoughts(req, res) {
         try {
             const thought = await Thought.findOneAndDelete({ _id: req.params.ThoughtId})
